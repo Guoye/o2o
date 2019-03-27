@@ -23,7 +23,9 @@
 hs_err_pid*
 
 target/
+target
 .vscode/
+.classpath
 
 .DS_Store
 Thumbs.db
