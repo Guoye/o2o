@@ -11,7 +11,8 @@ import com.zhangguoye.o2o.service.AreaService;
 
 @Service
 public class AreaServiceImpl implements AreaService {
-	
+
+//	注入AreaDao对象
 	@Autowired
 	private AreaDao areaDao;
 

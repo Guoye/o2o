@@ -31,6 +31,7 @@ public class Shop {
 	private Integer enableStatus;
 	// 建议
 	private String advice;
+	
 	public Long getShopId() {
 		return shopId;
 	}
