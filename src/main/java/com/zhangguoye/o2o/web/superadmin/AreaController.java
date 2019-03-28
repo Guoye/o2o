@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,8 @@ import com.zhangguoye.o2o.service.AreaService;
 @RequestMapping("/superadmin/area")
 public class AreaController {
 
+	Logger logger = LoggerFactory.getLogger(AreaController.class);
+
 	@Autowired
 	private AreaService areaService;
 
@@ -25,6 +29,8 @@ public class AreaController {
 
 	@RequestMapping("/list")
 	public Map<String, Object> listArea() {
+		logger.info("=========start==========");
+		Long startTime = System.currentTimeMillis();
 		Map<String, Object> modalMap = new HashMap<String, Object>();
 		List<Area> list = new ArrayList<Area>();
 		try {
@@ -35,7 +41,10 @@ public class AreaController {
 			modalMap.put("success", false);
 			modalMap.put("meaasge", e.getMessage());
 		}
-		
+		logger.error("ERROR!测试出错日志!");
+		Long endTime = System.currentTimeMillis();
+		logger.debug("costTime:[{}ms]", endTime - startTime);
+		logger.info("=========end==========");
 		return modalMap;
 	}
 
