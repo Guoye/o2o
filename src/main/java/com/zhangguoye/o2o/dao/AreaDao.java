@@ -34,9 +34,10 @@ public interface AreaDao {
 	int updateArea(Area area);
 	
 	/**
-	 * 删除一条记录
-	 * @param id area_id
+	 * 删除至少一条记录
+	 * @param String area_id，多个id用,号隔开
 	 * @return 操作成功的记录数
 	 */
-	int deleteArea(int id);
+//	int deleteArea(List<Integer> ids);
+	int deleteArea(String id);
 }

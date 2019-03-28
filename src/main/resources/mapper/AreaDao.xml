@@ -3,26 +3,48 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhangguoye.o2o.dao.AreaDao">
-	<select id="queryArea" resultType="com.zhangguoye.o2o.entity.Area">
-		select * 
+	<select id="queryArea"
+		resultType="com.zhangguoye.o2o.entity.Area">
+		select *
 		from tb_area
 		order by priority
 		desc
 	</select>
-	<select id="queryAreaById" resultType="com.zhangguoye.o2o.entity.Area">
+	<select id="queryAreaById"
+		resultType="com.zhangguoye.o2o.entity.Area">
 		select *
-		frome tb_area
+		from tb_area
 		where area_id=#{id}
 	</select>
-	<insert id="insertArea" parameterType="com.zhangguoye.o2o.entity.Area">
-		insert into tb_area(area_id, area_name, area_desc, priority, create_time, last_edit_time)
+	<insert id="insertArea"
+		parameterType="com.zhangguoye.o2o.entity.Area" useGeneratedKeys="true"
+		keyColumn="area_id" keyProperty="areaId">
+		insert into
+		tb_area(area_name,
+		area_desc, priority, create_time, last_edit_time)
 		value(
-			#{areaId},
-			#{area_name},
-			#{area_desc},
-			#{priority},
-			#{create_time},
-			#{last_edit_time}
+		#{areaName},
+		#{areaDesc},
+		#{priority},
+		#{createTime},
+		#{lastEditTime}
 		)
 	</insert>
+	<update id="updateArea">
+		UPDATE tb_area
+		<set>
+			<if test="areaName != null">area_name = #{areaName},</if>
+			<if test="areaDesc != null">area_desc = #{areaDesc},</if>
+			<if test="priority != null">priority = #{priority},</if>
+			<if test="createTime != null">create_time = #{createTime},</if>
+			<if test="lastEditTime != null">last_edit_time = #{lastEditTime}</if>
+		</set>
+		where area_id=#{areaId}
+	</update>
+	<!-- <delete id="deleteArea"> DELETE from tb_area where area_id in <foreach 
+		collection="#{ids}" open="(" close=")" separator=","></foreach> </delete> -->
+	<delete id="deleteArea">
+		DELETE from tb_area
+		where area_id= #{id}
+	</delete>
 </mapper>        
