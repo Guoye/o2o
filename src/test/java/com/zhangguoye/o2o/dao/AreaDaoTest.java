@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.zhangguoye.o2o.BaseTest;
 import com.zhangguoye.o2o.entity.Area;
 
+import junit.framework.Assert;
+
 public class AreaDaoTest extends BaseTest {
 
 	@Autowired
@@ -27,6 +29,13 @@ public class AreaDaoTest extends BaseTest {
 	public void testQueryArea() {
 		List<Area> areaList = areaDao.queryArea();
 		assertEquals(4, areaList.size());
+	}
+	
+	@Test
+//	@Ignore
+	public void testQueryAreaByid() {
+		Area area = areaDao.queryAreaById(16L);
+		assertNotNull(area);
 	}
 
 	@Test
@@ -57,14 +66,18 @@ public class AreaDaoTest extends BaseTest {
 	}
 
 	@Test
-//	@Ignore
+	@Ignore
 	public void testDeleteArea() {
 		List<Integer> ids = new ArrayList<Integer>();
-		ids.add(9);
-		ids.add(10);
-		ids.add(11);
-		int effectNum = areaDao.deleteArea("10");
+		ids.add(14);
+		ids.add(15);
+//		删除一条记录
+		int effectNum = areaDao.deleteArea(13L);
 		assertEquals(1, effectNum);
+		
+//		删除多条记录
+		int effectNum2 = areaDao.deleteArea2(ids);
+		assertEquals(ids.size(), effectNum2);
 	}
 
 }

@@ -2,6 +2,8 @@ package com.zhangguoye.o2o.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.zhangguoye.o2o.entity.Area;
 
 public interface AreaDao {
@@ -17,7 +19,7 @@ public interface AreaDao {
 	 * @param id area_id
 	 * @return Area实体
 	 */
-	Area queryAreaById(int id);
+	Area queryAreaById(Long id);
 	
 	/**
 	 * 插入一条Area的记录
@@ -34,10 +36,16 @@ public interface AreaDao {
 	int updateArea(Area area);
 	
 	/**
-	 * 删除至少一条记录
-	 * @param String area_id，多个id用,号隔开
+	 * 删除一条记录
+	 * @param Long area_id
 	 * @return 操作成功的记录数
 	 */
-//	int deleteArea(List<Integer> ids);
-	int deleteArea(String id);
+	int deleteArea(Long id);
+	
+	/**
+	 * 删除多条记录
+	 * @param ids area_id集合
+	 * @return 操作成功的记录数
+	 */
+	int deleteArea2(@Param("ids") List<Integer> idList);
 }

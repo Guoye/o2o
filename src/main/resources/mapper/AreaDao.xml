@@ -41,10 +41,16 @@
 		</set>
 		where area_id=#{areaId}
 	</update>
-	<!-- <delete id="deleteArea"> DELETE from tb_area where area_id in <foreach 
-		collection="#{ids}" open="(" close=")" separator=","></foreach> </delete> -->
+
 	<delete id="deleteArea">
 		DELETE from tb_area
-		where area_id= #{id}
+		where area_id = #{id}
+	</delete>
+	
+	<delete id="deleteArea2">
+		DELETE from tb_area where area_id in
+		<foreach collection="ids" item="item" open="(" separator="," close=")" >
+			#{item}
+		</foreach>
 	</delete>
 </mapper>        
